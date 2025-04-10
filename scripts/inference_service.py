@@ -43,7 +43,7 @@ if __name__ == "__main__":
         default="gr1_arms_waist",
     )
 
-    parser.add_argument("--port", type=int, help="Port number for the server.", default=5555)
+    parser.add_argument("--port", type=int, help="Port number for the server.", default=8000)
     parser.add_argument(
         "--host", type=str, help="Host address for the server.", default="localhost"
     )
@@ -115,6 +115,16 @@ if __name__ == "__main__":
             "state.waist": np.random.rand(1, 3),
             "annotation.human.action.task_description": ["do your thing!"],
         }
+        
+        # obs = {
+        #     "video.front": np.random.randint(0, 256, (1, 360, 640, 3), dtype=np.uint8),
+        #     "video.wrist_right": np.random.randint(0, 256, (1, 360, 640, 3), dtype=np.uint8),
+        #     "state.left_arm": np.random.rand(1, 6),
+        #     "state.right_arm": np.random.rand(1, 6),
+        #     "state.vacuum": np.random.rand(1, 1),
+        #     "state.waist": np.random.rand(1, 4),
+        #     "annotation.human.action.task_description": ["do something"],
+        # }
         action = policy_client.get_action(obs)
 
         for key, value in action.items():
